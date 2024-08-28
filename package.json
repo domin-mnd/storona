@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "engines": {
-    "node": ">=18"
+  "homepage": "https://storona.domin.pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domin-mnd/storona.git"
   },
   "scripts": {
     "dev": "korob dev",
@@ -19,6 +21,12 @@
   "keywords": ["express", "fastify", "backend", "router", "routing"],
   "author": "domin-mnd",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/domin-mnd/korob/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "tsup": "8.2.4"
   },
