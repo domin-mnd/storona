@@ -1,0 +1,18 @@
+# Dist only
+src
+tests
+
+# Configs
+.vscode
+biome.json
+tsconfig.json
+korob.config.ts
+vitest.config.ts
+.prettierrc.json
+.prettierignore
+
+# Markdown
+CONTRIBUTING.md
+
+# Docs
+docs

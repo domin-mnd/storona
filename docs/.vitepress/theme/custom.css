@@ -1,0 +1,60 @@
+:root {
+  /* Primary button */
+  --vp-button-brand-text: white;
+  --vp-button-brand-bg: black;
+  --vp-button-brand-hover-text: white;
+  --vp-button-brand-hover-bg: #444;
+
+  --vp-c-text-1: black;
+  --vp-c-text-2: #666;
+  --vp-c-brand-1: #aaa;
+  --vp-c-brand-2: #999;
+
+  --vp-c-bg-soft: #f6f6f6;
+  --vp-c-bg-alt: #f8f8f8;
+
+  --vp-c-default-soft: #e8e8e8;
+
+  --vp-code-color: #666;
+}
+
+.dark {
+  /* Primary button */
+  --vp-button-brand-text: black;
+  --vp-button-brand-bg: white;
+  --vp-button-brand-hover-text: black;
+  --vp-button-brand-hover-bg: #bbb;
+  --vp-button-brand-active-text: black;
+  --vp-button-brand-active-bg: #888;
+
+  --vp-c-text-1: white;
+  --vp-c-text-2: #999;
+  --vp-c-brand-1: #ccc;
+  --vp-c-brand-2: #888;
+
+  --vp-c-bg: #151515;
+  --vp-c-bg-soft: #222;
+  --vp-c-bg-alt: #171717;
+  --vp-c-bg-elv: #191919;
+
+  --vp-c-default-soft: #333;
+
+  --vp-c-gray-1: #777;
+  --vp-c-gray-2: #555;
+  --vp-c-gray-3: #333;
+
+  --vp-code-color: var(--vp-c-brand-1);
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1.5px;
+  transition: all 0.25s;
+}
+
+.is-active .link,
+.active.link {
+  text-decoration-color: var(--vp-c-brand-1);
+  transition: all 0.25s;
+}
