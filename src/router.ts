@@ -1,3 +1,5 @@
+import type { Express } from "express";
+import type { FastifyInstance } from "fastify";
 import { getHandler, getImport, getMethod, getRoute } from "./import";
 import { type Logger, createLogger } from "./logger";
 import { normalizeManualRoute } from "./normalize";
@@ -78,15 +80,15 @@ export let logger: Logger;
  * );
  */
 export async function createRouter(
-  app: any,
+  app: Express | FastifyInstance,
   options?: RouterOptions,
 ): Promise<EndpointInfo[]>;
 export async function createRouter(
-  app: any,
+  app: Express | FastifyInstance,
   directory?: string,
 ): Promise<EndpointInfo[]>;
 export async function createRouter(
-  app: any,
+  app: Express | FastifyInstance,
   router?: RouterOptions | string,
 ): Promise<EndpointInfo[]> {
   const endpointStatus: EndpointInfo[] = [];
