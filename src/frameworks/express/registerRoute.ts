@@ -14,5 +14,9 @@ export function registerRoute(
     RouteType
   >,
 ): void {
-  instance[importData.method](importData.route, importData.handler);
+  instance[importData.method](
+    importData.route,
+    // Suppress type mismatch error
+    importData.handler as any,
+  );
 }
