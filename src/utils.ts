@@ -132,7 +132,7 @@ export async function buildRouter(options: Required<RouterOptions>) {
     splitting: true,
     format: "cjs",
     silent: true,
-    bundle: false,
+    bundle: true,
     outExtension: () => ({
       js: ".js",
       dts: ".d.ts",
