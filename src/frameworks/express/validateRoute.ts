@@ -80,7 +80,10 @@ export function assertDefaultImport(
     throw new Error("Invalid default export route handler");
   }
 
-  if (typeof route.default?.default !== "function") {
+  if (
+    typeof route.default === "object" &&
+    typeof route.default?.default !== "function"
+  ) {
     throw new Error(
       "Default export should be defined with defineRoute",
     );
@@ -95,7 +98,10 @@ export function validateRoute(
   RouteType
 > {
   assertExportedVariables(importData);
-  if ("default" in importData)
+  if (
+    "default" in importData &&
+    typeof importData.default === "object"
+  )
     assertExportedVariables(importData.default);
   assertDefaultImport(importData);
 }
