@@ -1,4 +1,10 @@
-import type { RouteHandlerMethod } from "fastify";
+import type {
+  RawReplyDefaultExpression,
+  RawRequestDefaultExpression,
+  RawServerDefault,
+  RouteGenericInterface,
+  RouteHandlerMethod,
+} from "fastify";
 
 export type CorrectMethodsType =
   | "get"
@@ -9,6 +15,22 @@ export type CorrectMethodsType =
   | "options"
   | "head";
 
-export type RouteHandlerType = RouteHandlerMethod;
+export type RouteHandlerType<
+  RouteGeneric extends RouteGenericInterface,
+> =
+  | RouteHandlerMethod<
+      RawServerDefault,
+      RawRequestDefaultExpression,
+      RawReplyDefaultExpression,
+      RouteGeneric
+    >
+  | Promise<
+      RouteHandlerMethod<
+        RawServerDefault,
+        RawRequestDefaultExpression,
+        RawReplyDefaultExpression,
+        RouteGeneric
+      >
+    >;
 
 export type RouteType = string;

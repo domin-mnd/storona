@@ -1,3 +1,4 @@
+import type { RouteGenericInterface } from "fastify";
 import type { RouteHandlerType } from "./types";
 
 /**
@@ -17,7 +18,9 @@ import type { RouteHandlerType } from "./types";
  * });
  */
 export function defineFastifyRoute<
-  T extends RouteHandlerType | Promise<RouteHandlerType>,
->(handler: T): T {
+  RouteGeneric extends RouteGenericInterface,
+>(
+  handler: RouteHandlerType<RouteGeneric>,
+): RouteHandlerType<RouteGeneric> {
   return handler;
 }
