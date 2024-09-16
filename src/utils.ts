@@ -8,6 +8,10 @@ import { assertMethod } from "./validate";
 
 export const BUILD_DIR = resolve("node_modules/.cache/storona");
 
+export function isBun(): boolean {
+  return !!process.versions.bun;
+}
+
 /**
  * Get files in directory.
  * @param dir - Path to directory.
@@ -124,6 +128,9 @@ export function getStructure(
  * @param options - Required router options.
  */
 export async function buildRouter(options: Required<RouterOptions>) {
+  // Don't transpile when running in bun
+  if (isBun()) return;
+
   await build({
     entry: [
       join(process.cwd(), options.directory).replace(/\\/g, "/"),

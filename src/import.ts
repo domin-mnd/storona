@@ -1,9 +1,17 @@
-import { join } from "path";
+import { join, resolve } from "path";
 import { pathToFileURL } from "url";
-import type { RequestHandler } from "express";
-import { BUILD_DIR } from "./utils";
+import { BUILD_DIR, isBun } from "./utils";
 
 export function getImport(filePath: string): Promise<unknown> {
+  if (isBun()) {
+    /**
+     * Import src/routes/index.get.ts directly instead of
+     * importing transpiled node_modules/.cache/storona/src/routes/index.get.js
+     * @see {@link file://./utils.ts buildRouter}
+     */
+    return import(resolve(filePath));
+  }
+
   const fileParts = filePath.split(".");
   fileParts[fileParts.length - 1] = "js";
 
@@ -12,12 +20,18 @@ export function getImport(filePath: string): Promise<unknown> {
   return import(pathToFileURL(outFile).toString());
 }
 
-export function getHandler(importData: any): RequestHandler {
-  if (typeof importData.default === "function") {
+export function getHandler(importData: any): () => unknown {
+  const defaultType = typeof importData.default;
+
+  if (defaultType === "function") {
     return importData.default;
   }
 
-  return importData.default.default;
+  if (defaultType === "object") {
+    return importData.default.default;
+  }
+
+  return () => {};
 }
 
 export function getMethod(importData: any): any | undefined {
