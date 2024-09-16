@@ -7,6 +7,7 @@ import type { RouteHandlerType } from "./types";
  * @param handler - Route handler method.
  * @returns Route handler method.
  * @example
+ * // routes/!hello.get.mjs
  * import { defineFastifyRoute } from "storona";
  *
  * // Optional overrides
