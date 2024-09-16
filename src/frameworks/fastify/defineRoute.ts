@@ -16,6 +16,20 @@ import type { RouteHandlerType } from "./types";
  * export default defineFastifyRoute((_request, reply) => {
  *   reply.send("Hello world!");
  * });
+ * @example
+ * // routes/my-fruit.get.ts
+ * import { defineFastifyRoute } from "storona";
+ *
+ * interface ReqBody {
+ *   fruit: string;
+ * }
+ *
+ * export default defineFastifyRoute<{
+ *   Body: ReqBody;
+ * }>((_req, res) => {
+ *   const { fruit } = req.body;
+ *   res.send(`My fruit is ${fruit}!`);
+ * });
  */
 export function defineFastifyRoute<
   RouteGeneric extends RouteGenericInterface,
