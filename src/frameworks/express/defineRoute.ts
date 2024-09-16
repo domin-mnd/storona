@@ -6,7 +6,7 @@ import type { ParsedQs, RouteHandlerType } from "./types";
  * @param handler - Request handler.
  * @returns Request handler.
  * @example
- * // routes/hello.get.mjs
+ * // routes/!hello.get.mjs
  * import { defineExpressRoute } from "storona";
  *
  * // Optional overrides
