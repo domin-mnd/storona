@@ -24,15 +24,15 @@ import type { ParsedQs, RouteHandlerType } from "./types";
  *   fruit: string;
  * }
  *
- * export default defineExpressRoute<never, never, ReqBody>((_req, res) => {
+ * export default defineExpressRoute<ReqBody>((req, res) => {
  *   const { fruit } = req.body;
  *   res.send(`My fruit is ${fruit}!`);
  * });
  */
 export function defineExpressRoute<
-  Params = Record<string, string>,
-  ResBody = any,
   ReqBody = any,
+  ResBody = any,
+  Params = Record<string, string>,
   ReqQuery = ParsedQs,
   Locals extends Record<string, any> = Record<string, any>,
 >(
