@@ -16,7 +16,7 @@ export type CorrectMethodsType =
   | "head";
 
 export type RouteHandlerType<
-  RouteGeneric extends RouteGenericInterface,
+  RouteGeneric extends RouteGenericInterface = RouteGenericInterface,
 > =
   | RouteHandlerMethod<
       RawServerDefault,

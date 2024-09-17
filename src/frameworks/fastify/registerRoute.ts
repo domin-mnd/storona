@@ -14,5 +14,6 @@ export function registerRoute(
     RouteType
   >,
 ): void {
+  // @ts-expect-error Ignore promise wrapping
   instance[importData.method](importData.route, importData.handler);
 }
