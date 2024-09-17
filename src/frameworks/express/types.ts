@@ -19,6 +19,14 @@ export interface ParsedQs {
     | ParsedQs[];
 }
 
+export interface RouteGeneric {
+  Params?: Record<string, string>;
+  ResBody?: any;
+  ReqBody?: any;
+  ReqQuery?: ParsedQs;
+  Locals?: Record<string, any>;
+}
+
 export type RouteHandlerType<
   Params = Record<string, string>,
   ResBody = any,

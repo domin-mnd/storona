@@ -1,4 +1,4 @@
-import type { ParsedQs, RouteHandlerType } from "./types";
+import type { RouteGeneric, RouteHandlerType } from "./types";
 
 /**
  * Function to define route in route files. Should be exported as default.
@@ -24,25 +24,29 @@ import type { ParsedQs, RouteHandlerType } from "./types";
  *   fruit: string;
  * }
  *
- * export default defineExpressRoute<ReqBody>((req, res) => {
+ * export default defineExpressRoute<{
+ *   ReqBody: ReqBody;
+ * }>((req, res) => {
  *   const { fruit } = req.body;
  *   res.send(`My fruit is ${fruit}!`);
  * });
  */
 export function defineExpressRoute<
-  ReqBody = any,
-  ResBody = any,
-  Params = Record<string, string>,
-  ReqQuery = ParsedQs,
-  Locals extends Record<string, any> = Record<string, any>,
+  Route extends RouteGeneric = RouteGeneric,
 >(
   handler: RouteHandlerType<
-    Params,
-    ResBody,
-    ReqBody,
-    ReqQuery,
-    Locals
+    Route["Params"],
+    Route["ResBody"],
+    Route["ReqBody"],
+    Route["ReqQuery"],
+    Route["Locals"] & Record<string, any>
   >,
-): RouteHandlerType<Params, ResBody, ReqBody, ReqQuery, Locals> {
+): RouteHandlerType<
+  Route["Params"],
+  Route["ResBody"],
+  Route["ReqBody"],
+  Route["ReqQuery"],
+  Route["Locals"] & Record<string, any>
+> {
   return handler;
 }
