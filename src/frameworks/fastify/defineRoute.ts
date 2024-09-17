@@ -27,7 +27,7 @@ import type { RouteHandlerType } from "./types";
  *
  * export default defineFastifyRoute<{
  *   Body: ReqBody;
- * }>((_req, res) => {
+ * }>((req, res) => {
  *   const { fruit } = req.body;
  *   res.send(`My fruit is ${fruit}!`);
  * });
