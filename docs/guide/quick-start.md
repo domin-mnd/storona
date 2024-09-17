@@ -83,8 +83,15 @@ Each route file should export a default function that will be used as a handler 
 // routes/other-fruits/apple.get.ts
 import { defineExpressRoute } from "storona";
 
-export default defineExpressRoute((_req, res) => {
-  res.send("Hello world!");
+interface Body {
+  fruit: string;
+}
+
+export default defineExpressRoute<{
+  ReqBody: Body;
+}>((req, res) => {
+  const { fruit } = req.body;
+  res.send(`Hello world! Here's your fruit: ${fruit}`);
 });
 ```
 
@@ -92,8 +99,15 @@ export default defineExpressRoute((_req, res) => {
 // routes/other-fruits/apple.get.ts
 import { defineFastifyRoute } from "storona";
 
-export default defineFastifyRoute((_request, reply) => {
-  reply.send("Hello world!");
+interface Body {
+  fruit: string;
+}
+
+export default defineFastifyRoute<{
+  Body: Body;
+}>((request, reply) => {
+  const { fruit } = request.body;
+  reply.send(`Hello world! Here's your fruit: ${fruit}`);
 });
 ```
 
