@@ -52,8 +52,8 @@ For the simplicity reason Storona supports TypeScript and JSX out-of-the-box. Th
 
 Due to some [characters being forbidden in Windows file names](https://stackoverflow.com/a/31976060/14301934), Storona may not provide full set of features of the underlying framework's route registration.
 
-To avoid this problem, you can override the route by using the `route` exported variable in the route file. To know more about this, see the [Templates](https://storona.domin.pro/guide/routing/templates#overriding-route-and-method) guide.
+To avoid this problem, you can override the route by using the `route` exported variable in the route file. To know more about this, see the [Templates](https://storona.domin.lol/guide/routing/templates#overriding-route-and-method) guide.
 
 ## Documentation
 
-For more information regarding Storona, please refer to the [official documentation](https://storona.domin.pro).
+For more information regarding Storona, please refer to the [official documentation](https://storona.domin.lol).

@@ -25,7 +25,7 @@ export let logger: Logger;
  * Register endpoints relative to file system.
  * Automatically transpiles esm, jsx & ts to cjs.
  *
- * @see {@link https://storona.domin.pro}
+ * @see {@link https://storona.domin.lol}
  * @param app - Your framework instance. Supported frameworks: Express, Fastify.
  * @returns Status of each found endpoint.
  * @example
