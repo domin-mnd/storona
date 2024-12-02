@@ -1,13 +1,24 @@
 import { readFileSync, readdirSync } from "fs";
 import { isAbsolute, join, normalize, relative, resolve } from "path";
 import { build } from "tsup";
-import type { FrameworkAdapter } from "./adapter";
+import type {
+  DeabstractedAdapter,
+  FrameworkAdapter,
+  UnknownAdapter,
+} from "./adapter";
 import { adapters } from "./frameworks";
 import type { RouteStructure, RouterOptions } from "./types";
 import { assertMethod } from "./validate";
+import { ExpressAdapter } from "./frameworks/express";
+import { FastifyAdapter } from "./frameworks/fastify";
 
 export const BUILD_DIR = resolve("node_modules/.cache/storona");
 
+/**
+ * Check if code is running in bun environment.
+ * @see {@link https://bun.sh/guides/util/detect-bun | Detect Bun}
+ * @returns True if running in bun.
+ */
 export function isBun(): boolean {
   return !!process.versions.bun;
 }
@@ -36,6 +47,38 @@ export function* getFiles(dir: string): Generator<string> {
 let packageJson: Record<string, unknown> | null | undefined;
 
 /**
+ * Get package.json.
+ * @returns Package.json content. Null if not found.
+ */
+export function getPackageJson(): Record<string, unknown> | null {
+  try {
+    return JSON.parse(
+      readFileSync(join(process.cwd(), "package.json"), "utf-8"),
+    );
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get project format from package.json.
+ * @returns Project format. "cjs" or "esm".
+ */
+export function getProjectFormat(): "cjs" | "esm" {
+  if (packageJson === undefined) {
+    packageJson = getPackageJson();
+  }
+
+  if (!packageJson) return "cjs";
+
+  return "type" in packageJson &&
+    typeof packageJson.type === "string" &&
+    packageJson.type === "module"
+    ? "esm"
+    : "cjs";
+}
+
+/**
  * Get package version from package.json.
  * @returns Package version.
  * @example
@@ -44,13 +87,7 @@ let packageJson: Record<string, unknown> | null | undefined;
  */
 export function getPackageVersion(): string {
   if (packageJson === undefined) {
-    try {
-      packageJson = JSON.parse(
-        readFileSync(join(process.cwd(), "package.json"), "utf-8"),
-      );
-    } catch {
-      packageJson = null;
-    }
+    packageJson = getPackageJson();
   }
 
   if (!packageJson) return "1.0.0";
@@ -137,7 +174,7 @@ export async function buildRouter(options: Required<RouterOptions>) {
     ],
     outDir: join(BUILD_DIR, options.directory),
     splitting: true,
-    format: "cjs",
+    format: getProjectFormat(),
     silent: true,
     bundle: true,
     outExtension: () => ({
@@ -149,18 +186,51 @@ export async function buildRouter(options: Required<RouterOptions>) {
   });
 }
 
-export type UnknownAdapter = FrameworkAdapter<any, any, any, any>;
-interface DeabstractedAdapter {
-  new (instance: unknown): UnknownAdapter;
+const ADAPTER_TABLE: Record<
+  string,
+  typeof FrameworkAdapter<any, any, any, any>
+> = {
+  express: ExpressAdapter,
+  fastify: FastifyAdapter,
+};
+
+/**
+ * Get framework adapter by its explicity name in the table.
+ * @param name - Adapter name.
+ * @param instance - Framework instance to use.
+ * @returns Adapter instance.
+ */
+export function getAdapterByName(
+  name: unknown,
+  instance: unknown,
+): UnknownAdapter | undefined {
+  if (typeof name !== "string") {
+    return undefined;
+  }
+
+  const Adapter = ADAPTER_TABLE[name] as unknown as
+    | DeabstractedAdapter
+    | undefined;
+
+  if (!Adapter) {
+    throw new Error(`Framework adapter "${name}" not found`);
+  }
+
+  return new Adapter(instance);
 }
 
+/**
+ * Detect framework adapter using static detectFramework method.
+ * @param instance - Framework instance to use.
+ * @returns Adapter instance.
+ */
 export function detectAdapter(instance: unknown): UnknownAdapter {
   const Adapter = adapters.find(adapter =>
     adapter.detectFramework(instance),
   ) as DeabstractedAdapter | undefined;
 
   if (!Adapter) {
-    throw new Error("Framework adapter not found");
+    throw new Error("Could not detect framework adapter");
   }
 
   return new Adapter(instance);
@@ -170,7 +240,9 @@ export function defineOptions(
   router?: RouterOptions | string,
 ): RouterOptions {
   const options =
-    typeof router === "string" ? { directory: router } : router ?? {};
+    typeof router === "string"
+      ? { directory: router }
+      : (router ?? {});
 
   if (options.directory)
     options.directory = isAbsolute(options.directory)
@@ -188,6 +260,7 @@ export function fallbackOptions(
     prefix: false,
     quiet: false,
     ignoreWarnings: false,
+    adapter: "express",
     ...options,
   };
 }

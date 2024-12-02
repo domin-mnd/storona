@@ -27,6 +27,7 @@ test("fallbackOptions() replaces correctly", () => {
     prefix: false,
     quiet: false,
     ignoreWarnings: false,
+    adapter: "express",
   });
 
   expect(
@@ -34,12 +35,14 @@ test("fallbackOptions() replaces correctly", () => {
       prefix: true,
       quiet: true,
       ignoreWarnings: true,
+      adapter: "fastify",
     }),
   ).toStrictEqual({
     directory: "routes",
     prefix: true,
     quiet: true,
     ignoreWarnings: true,
+    adapter: "fastify",
   });
 });
 
@@ -49,5 +52,6 @@ test("fallbackOptions() fallbacks completely", () => {
     prefix: false,
     quiet: false,
     ignoreWarnings: false,
+    adapter: "express",
   });
 });

@@ -9,14 +9,15 @@ import type {
   RouterOptions,
 } from "./types";
 import {
-  type UnknownAdapter,
   buildRouter,
   defineOptions,
   detectAdapter,
   fallbackOptions,
+  getAdapterByName,
   getFiles,
   getStructure,
 } from "./utils";
+import type { UnknownAdapter } from "./adapter";
 
 // Functions aren't pure to avoid repetitive code
 export let logger: Logger;
@@ -46,6 +47,7 @@ export let logger: Logger;
  *   directory: "src/routes",
  *   // Set to true to use the package version. 1.0.0 -> /v1
  *   prefix: "/v1/api",
+ *   adapter: "express", // Optional, detected automatically
  *   quiet: false,
  * });
  *
@@ -108,7 +110,8 @@ export async function createRouter(
 
   let adapter: UnknownAdapter;
   try {
-    adapter = detectAdapter(app);
+    adapter =
+      getAdapterByName(definition.adapter, app) ?? detectAdapter(app);
   } catch (error) {
     if (error instanceof Error) {
       logger.error(
@@ -159,11 +162,23 @@ export async function createRouter(
     const setMethod = manualMethod ?? method;
     const setEndpoint = manualEndpoint ?? endpoint;
 
-    adapter.registerRoute({
-      handler: getHandler(importData),
-      method: setMethod,
-      route: setEndpoint,
-    });
+    try {
+      adapter.registerRoute({
+        handler: getHandler(importData),
+        method: setMethod,
+        route: setEndpoint,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        logger.error(
+          `Failed to register route ${setEndpoint}: ${(error as Error).message}`,
+        );
+      } else {
+        logger.error(
+          `Unknown error while registering route ${setEndpoint}: ${error}`,
+        );
+      }
+    }
 
     logger.info(
       `Registered ${setMethod.toUpperCase()} ${setEndpoint}`,

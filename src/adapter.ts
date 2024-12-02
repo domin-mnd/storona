@@ -1,16 +1,5 @@
 import type { RouteStructure } from "./types";
 
-interface ValidResult {
-  ok: true;
-}
-
-interface InvalidResult {
-  ok: false;
-  error: Error;
-}
-
-export type ValidatorResult = ValidResult | InvalidResult;
-
 interface ImportOrigin<
   RouteHandlerType,
   CorrectMethodsType,
@@ -42,6 +31,12 @@ export interface ParsedImport<
   handler: RouteHandlerType;
   method: CorrectMethodsType;
   route: RouteType;
+}
+
+export type UnknownAdapter = FrameworkAdapter<any, any, any, any>;
+
+export interface DeabstractedAdapter {
+  new (instance: unknown): UnknownAdapter;
 }
 
 export abstract class FrameworkAdapter<

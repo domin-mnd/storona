@@ -20,6 +20,7 @@ createRouter(app, {
   directory: "src/routes",
   // Set to true to use the package version. 1.0.0 -> /v1
   prefix: "/v1/api",
+  adapter: "express", // Optional, detected automatically
   quiet: false,
 });
 
@@ -38,6 +39,7 @@ createRouter(app, {
   directory: "src/routes",
   // Set to true to use the package version. 1.0.0 -> /v1
   prefix: "/v1/api",
+  adapter: "fastify", // Optional, detected automatically
   quiet: false,
 });
 

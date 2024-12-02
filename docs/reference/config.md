@@ -99,3 +99,37 @@ createRouter(app, {
 ```
 
 This will suppress every non-critical issue that Storona encounters. It is not recommended to use in production.
+
+## Adapter
+
+To set a custom adapter or explicitly define it, set the `adapter` option:
+
+::: code-group
+
+```ts [Express]
+import { createRouter } from "storona";
+
+createRouter(app, {
+  adapter: "express",
+});
+```
+
+```ts [Fastify]
+import { createRouter } from "storona";
+
+createRouter(app, {
+  adapter: "fastify",
+});
+```
+
+```ts [Custom Adapter]
+import { createRouter } from "storona";
+// An example of an adapter
+import { Adapter } from "@storona/telegraf";
+
+createRouter(app, {
+  adapter: Adapter,
+});
+```
+
+:::

@@ -1,3 +1,5 @@
+import type { FrameworkAdapter } from "./adapter";
+
 export interface RouterOptions {
   /**
    * Directory to look for routes.
@@ -28,6 +30,16 @@ export interface RouterOptions {
    * @default false
    */
   ignoreWarnings?: boolean;
+
+  /**
+   * Custom provided adapter to fetch from.
+   * @see {@link https://storona.domin.lol/reference/config.html#adapter}
+   * @default auto
+   */
+  adapter?:
+    | "express"
+    | "fastify"
+    | FrameworkAdapter<any, any, any, any>;
 }
 
 export interface RouteStructure {
