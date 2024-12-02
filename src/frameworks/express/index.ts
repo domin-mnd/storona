@@ -2,8 +2,8 @@ import {
   type CorrectImport,
   FrameworkAdapter,
   type ParsedImport,
+  type RouteStructure,
 } from "@/adapter";
-import type { RouteStructure } from "@/types";
 import type { Express } from "express";
 import { detectFramework } from "./detectFramework";
 import { registerRoute } from "./registerRoute";

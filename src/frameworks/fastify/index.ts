@@ -2,8 +2,8 @@ import {
   type CorrectImport,
   FrameworkAdapter,
   type ParsedImport,
+  type RouteStructure,
 } from "@/adapter";
-import type { RouteStructure } from "@/types";
 import type { FastifyInstance } from "fastify";
 import { detectFramework } from "./detectFramework";
 import { registerRoute } from "./registerRoute";

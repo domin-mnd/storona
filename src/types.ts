@@ -42,11 +42,6 @@ export interface RouterOptions {
     | FrameworkAdapter<any, any, any, any>;
 }
 
-export interface RouteStructure {
-  endpoint: string;
-  method: string;
-}
-
 interface ValidEndpoint {
   /** Path to the route file. */
   path: string;

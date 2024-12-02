@@ -3,11 +3,7 @@ import type { FastifyInstance } from "fastify";
 import { getHandler, getImport, getMethod, getRoute } from "./import";
 import { type Logger, createLogger } from "./logger";
 import { normalizeManualRoute } from "./normalize";
-import type {
-  EndpointInfo,
-  RouteStructure,
-  RouterOptions,
-} from "./types";
+import type { EndpointInfo, RouterOptions } from "./types";
 import {
   buildRouter,
   defineOptions,
@@ -17,7 +13,7 @@ import {
   getFiles,
   getStructure,
 } from "./utils";
-import type { UnknownAdapter } from "./adapter";
+import type { RouteStructure, UnknownAdapter } from "./adapter";
 
 // Functions aren't pure to avoid repetitive code
 export let logger: Logger;

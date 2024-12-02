@@ -1,4 +1,4 @@
-import type { RouteStructure } from "@/types";
+import type { RouteStructure } from "@/adapter";
 import type { CorrectMethodsType } from "./types";
 
 export const METHODS: CorrectMethodsType[] = [

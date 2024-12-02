@@ -4,10 +4,11 @@ import { build } from "tsup";
 import type {
   DeabstractedAdapter,
   FrameworkAdapter,
+  RouteStructure,
   UnknownAdapter,
 } from "./adapter";
 import { adapters } from "./frameworks";
-import type { RouteStructure, RouterOptions } from "./types";
+import type { RouterOptions } from "./types";
 import { assertMethod } from "./validate";
 import { ExpressAdapter } from "./frameworks/express";
 import { FastifyAdapter } from "./frameworks/fastify";

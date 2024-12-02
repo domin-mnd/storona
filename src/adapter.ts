@@ -1,5 +1,3 @@
-import type { RouteStructure } from "./types";
-
 interface ImportOrigin<
   RouteHandlerType,
   CorrectMethodsType,
@@ -8,6 +6,11 @@ interface ImportOrigin<
   default: RouteHandlerType;
   method?: CorrectMethodsType;
   route?: RouteType;
+}
+
+export interface RouteStructure {
+  endpoint: string;
+  method: string;
 }
 
 export interface CorrectImport<
