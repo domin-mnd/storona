@@ -122,6 +122,11 @@ export function getStructure(
   const pathParts = path.split(".");
   // Remove extension
   pathParts.pop();
+
+  if (pathParts.length === 1) {
+    throw new Error("Method is not provided");
+  }
+
   const method = pathParts.pop();
 
   assertMethod(method);
