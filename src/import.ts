@@ -1,6 +1,6 @@
 import { join, resolve } from "path";
 import { pathToFileURL } from "url";
-import { BUILD_DIR, isBun } from "./utils";
+import { BUILD_DIR, getProjectFormat, isBun } from "./utils";
 
 export function getImport(filePath: string): Promise<unknown> {
   if (isBun()) {
@@ -12,8 +12,10 @@ export function getImport(filePath: string): Promise<unknown> {
     return import(resolve(filePath));
   }
 
+  const isEsm = getProjectFormat() === "esm";
+
   const fileParts = filePath.split(".");
-  fileParts[fileParts.length - 1] = "js";
+  fileParts[fileParts.length - 1] = `${isEsm ? "m" : ""}js`;
 
   const outFile = join(BUILD_DIR, fileParts.join("."));
 

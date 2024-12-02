@@ -173,6 +173,9 @@ export function getStructure(
 export async function buildRouter(options: Required<RouterOptions>) {
   // Don't transpile when running in bun
   if (isBun()) return;
+  const format = getProjectFormat();
+  const isEsm = format === "esm";
+  const esmPrefix = isEsm ? "m" : "";
 
   await build({
     entry: [
@@ -180,11 +183,11 @@ export async function buildRouter(options: Required<RouterOptions>) {
     ],
     outDir: join(BUILD_DIR, options.directory),
     splitting: true,
-    format: getProjectFormat(),
+    format,
     silent: true,
     bundle: true,
     outExtension: () => ({
-      js: ".js",
+      js: `.${esmPrefix}js`,
       dts: ".d.ts",
     }),
     dts: false,
