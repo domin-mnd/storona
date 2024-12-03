@@ -9,7 +9,7 @@ import type {
 } from "./adapter";
 import { adapters } from "./frameworks";
 import type { RouterOptions } from "./types";
-import { assertMethod } from "./validate";
+import { assertAdapter, assertMethod } from "./validate";
 import { ExpressAdapter } from "./frameworks/express";
 import { FastifyAdapter } from "./frameworks/fastify";
 
@@ -203,6 +203,13 @@ const ADAPTER_TABLE: Record<
   fastify: FastifyAdapter,
 };
 
+function isAdapter(value: unknown): value is DeabstractedAdapter {
+  return (
+    typeof value === "function" &&
+    /^\s*class\s+/.test(value.toString())
+  );
+}
+
 /**
  * Get framework adapter by its explicity name in the table.
  * @param name - Adapter name.
@@ -213,6 +220,15 @@ export function getAdapterByName(
   name: unknown,
   instance: unknown,
 ): UnknownAdapter | undefined {
+  if (isAdapter(name)) {
+    const Adapter: DeabstractedAdapter = name;
+    const adapter = new Adapter(instance);
+
+    assertAdapter(adapter);
+
+    return adapter;
+  }
+
   if (typeof name !== "string") {
     return undefined;
   }

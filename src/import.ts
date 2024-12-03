@@ -51,3 +51,13 @@ export function getRoute(importData: any): any | undefined {
 
   return importData.route;
 }
+
+export function flattenExports(
+  importData: any,
+): Record<string, unknown> {
+  if (typeof importData.default === "object") {
+    return importData.default;
+  }
+
+  return importData;
+}

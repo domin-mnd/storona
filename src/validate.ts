@@ -1,3 +1,4 @@
+import type { UnknownAdapter } from "./adapter";
 import { logger } from "./router";
 import type { RouterOptions } from "./types";
 
@@ -14,6 +15,18 @@ export function assertMethod(
 ): asserts method is string {
   if (!method) {
     throw new Error("Method is not provided");
+  }
+}
+
+export function assertAdapter(adapter: UnknownAdapter) {
+  const keys = Object.keys(adapter);
+
+  if (
+    !keys.includes("validateRoute") ||
+    !keys.includes("validateRoutePath") ||
+    !keys.includes("registerRoute")
+  ) {
+    throw new Error("Adapter is missing required methods");
   }
 }
 

@@ -1,6 +1,12 @@
 import type { Express } from "express";
 import type { FastifyInstance } from "fastify";
-import { getHandler, getImport, getMethod, getRoute } from "./import";
+import {
+  flattenExports,
+  getHandler,
+  getImport,
+  getMethod,
+  getRoute,
+} from "./import";
 import { type Logger, createLogger } from "./logger";
 import { normalizeManualRoute } from "./normalize";
 import type { EndpointInfo, RouterOptions } from "./types";
@@ -129,8 +135,9 @@ export async function createRouter(
     let structure: RouteStructure;
 
     try {
-      importData = await getImport(file);
+      importData = flattenExports(await getImport(file));
       structure = getStructure(options, file);
+
       adapter.validateRoute(importData);
       adapter.validateRoutePath(structure);
     } catch (error) {
@@ -163,6 +170,7 @@ export async function createRouter(
         handler: getHandler(importData),
         method: setMethod,
         route: setEndpoint,
+        data: importData as any,
       });
     } catch (error) {
       if (error instanceof Error) {

@@ -125,7 +125,7 @@ createRouter(app, {
 ```ts [Custom Adapter]
 import { createRouter } from "storona";
 // An example of an adapter
-import { Adapter } from "@storona/telegraf";
+import { Adapter } from "@storona/grammy";
 
 createRouter(app, {
   adapter: Adapter,

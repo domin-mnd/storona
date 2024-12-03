@@ -39,7 +39,7 @@ export interface RouterOptions {
   adapter?:
     | "express"
     | "fastify"
-    | FrameworkAdapter<any, any, any, any>;
+    | typeof FrameworkAdapter<any, any, any, any>;
 }
 
 interface ValidEndpoint {
