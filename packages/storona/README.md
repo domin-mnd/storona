@@ -14,8 +14,6 @@ const app = express();
 
 createRouter(app, {
   directory: "src/routes",
-  // Set to true to use the package version. 1.0.0 -> /v1
-  prefix: "/v1/api",
   quiet: false,
 });
 

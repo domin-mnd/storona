@@ -46,7 +46,7 @@ let packageJson: Record<string, unknown> | null | undefined;
 export function getPackageJson(): Record<string, unknown> | null {
   try {
     return JSON.parse(
-      readFileSync(join(process.cwd(), "package.json"), "utf-8")
+      readFileSync(join(process.cwd(), "package.json"), "utf-8"),
     );
   } catch {
     return null;
@@ -72,31 +72,6 @@ export function getProjectFormat(): "cjs" | "esm" {
 }
 
 /**
- * Get package version from package.json.
- * @returns Package version.
- * @example
- * getPackageVersion() == "1.6.7" // If package.json has version 1.6.7
- * getPackageVersion() == "1.0.0" // If there is no version in package.json or package.json is not found
- */
-export function getPackageVersion(): string {
-  if (packageJson === undefined) {
-    packageJson = getPackageJson();
-  }
-
-  if (!packageJson) return "1.0.0";
-
-  return "version" in packageJson && typeof packageJson.version === "string"
-    ? packageJson.version
-    : "1.0.0";
-}
-
-export function getPrefix(prefix: `/${string}` | true): string {
-  return typeof prefix === "string"
-    ? prefix
-    : `/v${getPackageVersion().split(".")[0]}`;
-}
-
-/**
  * Get structure from file path.
  * @param path - Path to file.
  * @example
@@ -106,7 +81,7 @@ export function getPrefix(prefix: `/${string}` | true): string {
  */
 export function getStructure(
   options: Required<RouterOptions>,
-  path: string
+  path: string,
 ): RouteStructure {
   path = path.replace(/\\/g, "/");
 
@@ -140,18 +115,8 @@ export function getStructure(
     .replace(/(?<!:)index$/g, "")
     .replace(/\/$/g, "");
 
-  const prefix = options.prefix === false ? "" : getPrefix(options.prefix);
-
-  // /prefix + route +
-  // "" + route +
-  // "" + "" +
-  // /prefix + "" -
-
-  // Joining slash for prefix
-  const slash = prefix !== "" && normalizedEndpoint === "" ? "" : "/";
-
   return {
-    endpoint: `${prefix}${slash}${normalizedEndpoint}`,
+    endpoint: normalizedEndpoint,
     method,
   };
 }
@@ -203,11 +168,10 @@ export function defineOptions(router?: RouterOptions | string): RouterOptions {
 }
 
 export function fallbackOptions(
-  options: RouterOptions
+  options: RouterOptions,
 ): Required<RouterOptions> {
   return {
     directory: "routes",
-    prefix: false,
     quiet: false,
     ignoreWarnings: false,
     adapter: undefinedAdapter(),

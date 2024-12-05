@@ -1,7 +1,7 @@
 {
-  "name": "@storona/express",
+  "name": "@storona/fastify",
   "version": "1.0.0",
-  "description": "File-based router adapter for express",
+  "description": "File-based router adapter for fastify",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
   "engines": {
     "node": ">=20"
   },
-  "homepage": "https://storona.domin.lol/guide/adapters/express",
+  "homepage": "https://storona.domin.lol/guide/adapters/fastify",
   "devDependencies": {
     "@domin-mnd/config": "^0.0.3",
     "@types/node": "^20",
@@ -39,11 +39,11 @@
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "express": ">=4",
+    "fastify": ">=4",
     "storona": ">=1"
   },
   "peerDependenciesMeta": {
-    "express": {
+    "fastify": {
       "optional": true
     },
     "storona": {

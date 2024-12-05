@@ -34,3 +34,14 @@ export type H<
     >;
 
 export type R = string;
+
+export interface Options {
+  /**
+   * Prefix all routes with a string or an API version.
+   * Set to true to use the package version. 1.0.0 -> /v1
+   * Set to a string to use a custom prefix.
+   * @see {@link https://storona.domin.lol/guide/adapters/fastify#options}
+   * @default false
+   */
+  prefix?: boolean | `/${string}`;
+}

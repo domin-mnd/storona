@@ -1,4 +1,4 @@
-import type { CorrectImport } from "@/adapter";
+import type { CorrectImport } from "storona/adapter";
 import type { M, H, R } from "./types";
 
 export const METHODS: M[] = [
@@ -13,9 +13,7 @@ export const METHODS: M[] = [
 
 export function assertMethod(method: string): asserts method is M {
   if (!METHODS.includes(method as M)) {
-    throw new Error(
-      "Method must be one of: get, post, put, delete, patch, options, head"
-    );
+    throw new Error(`Method must be one of: ${METHODS.join(", ")}`);
   }
 }
 
