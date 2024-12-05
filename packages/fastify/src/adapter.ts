@@ -37,7 +37,7 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
         },
       },
     };
-  }
+  },
 );
 
 /**
@@ -72,7 +72,7 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
  * });
  */
 export function define<RouteGeneric extends RouteGenericInterface>(
-  handler: H<RouteGeneric>
+  handler: H<RouteGeneric>,
 ): H<RouteGeneric> {
   return handler;
 }

@@ -55,7 +55,7 @@ export interface ParsedImport<H, M, R> {
  * ```
  */
 export function createAdapter<H, M, R, I, O>(
-  adapter: (instance: I, options?: O) => Adapter<H, M, R>
+  adapter: (instance: I, options?: O) => Adapter<H, M, R>,
 ): (options?: O) => AdapterCallback<H, M, R, I> {
   return (options?: O) => (instance: I) => adapter(instance, options);
 }
@@ -72,7 +72,7 @@ export interface AdapterV1<H, M, R> {
     init?: () => Promise<any> | any;
     /** Parse route path structure (endpoint + method). */
     route?: (
-      structure: RouteStructure
+      structure: RouteStructure,
     ) => Promise<RouteStructure> | RouteStructure;
     /** Registering a route by the provided instance. */
     register: (importData: ParsedImport<H, M, R>) => Promise<any> | any;

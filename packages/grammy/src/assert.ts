@@ -52,7 +52,7 @@ export function assertCommandScope(importData: ParsedImport<H, M, R>) {
 
   if (typeof scope !== "string") {
     throw new Error(
-      "Command scope must be a string, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope"
+      "Command scope must be a string, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope",
     );
   }
 
@@ -78,7 +78,7 @@ export function assertCommandScope(importData: ParsedImport<H, M, R>) {
   }
 
   throw new Error(
-    "Invalid command scope, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope"
+    "Invalid command scope, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope",
   );
 }
 
@@ -91,13 +91,13 @@ export function assertCommandDescription(importData: ParsedImport<H, M, R>) {
 export function assertMethod(method: unknown): asserts method is M {
   if (typeof method !== "string" || !METHODS.includes(method as M)) {
     throw new Error(
-      `Event must be one of:\n${METHODS.join(", ")}\nReceived: ${method}`
+      `Event must be one of:\n${METHODS.join(", ")}\nReceived: ${method}`,
     );
   }
 }
 
 export function assertExportedVariables(
-  route: unknown
+  route: unknown,
 ): asserts route is ParsedImport<H, M, R> {
   if (typeof route !== "object" || route === null) {
     throw new Error("No exports found");

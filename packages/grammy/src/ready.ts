@@ -87,7 +87,7 @@ function groupCommands(status: EndpointInfo[]): Group[] {
     };
 
     const group = commands.find(
-      (group) => group.scope === scope && group.language_code === language_code
+      (group) => group.scope === scope && group.language_code === language_code,
     );
 
     if (group) {

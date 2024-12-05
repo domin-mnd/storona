@@ -52,7 +52,7 @@ export const adapter = createAdapter<H, M, R, Bot, Options>(
         },
       },
     };
-  }
+  },
 );
 
 /**

@@ -9,7 +9,7 @@ import type {
 export type MethodType = FilterQuery | Callbacks | void;
 
 export type H<Q extends MethodType = void> = (
-  ctx: Ctx<Q>
+  ctx: Ctx<Q>,
 ) => any | Promise<any>;
 
 type CallbacksContext<T extends Callbacks> = T extends "command"

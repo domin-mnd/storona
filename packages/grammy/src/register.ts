@@ -18,7 +18,7 @@ export function registerCommand(bot: Bot, importData: ParsedImport<H, M, R>) {
     const route = (importData.route as string).substring(1);
     bot[method](
       method === "command" ? route.toString() : (route as string),
-      importData.handler
+      importData.handler,
     );
   } else {
     bot.on(importData.method as Events, importData.handler);

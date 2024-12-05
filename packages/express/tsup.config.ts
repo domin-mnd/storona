@@ -7,4 +7,4 @@ export default defineConfig({
   treeshake: "smallest",
   clean: true,
   minify: true,
-})
+});

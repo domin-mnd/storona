@@ -37,7 +37,7 @@ export const adapter = createAdapter<H, M, R, Express, Options>(
         },
       },
     };
-  }
+  },
 );
 
 /**
@@ -78,7 +78,7 @@ export function define<Route extends RouteGeneric = RouteGeneric>(
     Route["ReqBody"],
     Route["ReqQuery"],
     Route["Locals"] & Record<string, any>
-  >
+  >,
 ): H<
   Route["Params"],
   Route["ResBody"],

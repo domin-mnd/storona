@@ -53,7 +53,7 @@ server.listen(
   },
   () => {
     console.info("API running on port 3000");
-  }
+  },
 );
 ```
 

@@ -69,16 +69,12 @@ export default defineConfig({
       },
     },
     editLink: {
-      pattern:
-        "https://github.com/domin-mnd/storona/edit/master/docs/:path",
+      pattern: "https://github.com/domin-mnd/storona/edit/master/docs/:path",
     },
   },
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
-    [
-      "meta",
-      { property: "og:image", content: "/preview-banner.png" },
-    ],
+    ["meta", { property: "og:image", content: "/preview-banner.png" }],
     [
       "meta",
       {

@@ -18,7 +18,7 @@ export function assertMethod(method: string): asserts method is M {
 }
 
 export function assertExportedVariables(
-  route: unknown
+  route: unknown,
 ): asserts route is CorrectImport<H, M, R> {
   if (typeof route !== "object" || route === null) {
     throw new Error("No exports found");

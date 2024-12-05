@@ -12,7 +12,7 @@ test("on.route() correctly prefixes version", () => {
     actions.on.route?.({
       endpoint: "/nested/route",
       method: "put",
-    })
+    }),
   ).toStrictEqual({
     endpoint: `/v${version.split(".")[0]}/nested/route`,
     method: "put",
@@ -22,7 +22,7 @@ test("on.route() correctly prefixes version", () => {
     actions.on.route?.({
       endpoint: "/",
       method: "put",
-    })
+    }),
   ).toStrictEqual({
     endpoint: `/v${version.split(".")[0]}`,
     method: "put",
