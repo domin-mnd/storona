@@ -53,5 +53,6 @@ export function prependPrefix(
   prefix: string
 ): RouteStructure {
   structure.endpoint = `${prefix}${structure.endpoint}`;
+  structure.endpoint = structure.endpoint.replace(/\/$/g, "");
   return structure;
 }

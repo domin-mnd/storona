@@ -3,15 +3,9 @@ src
 tests
 
 # Configs
-.vscode
-.husky
-biome.json
 tsconfig.json
-korob.config.ts
+tsup.config.ts
 vitest.config.ts
-commitlint.config.ts
-.prettierrc.json
-.prettierignore
 
 # Markdown
 CONTRIBUTING.md

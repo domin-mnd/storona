@@ -1,6 +1,6 @@
 import { version } from "package.json";
 import { expect, test } from "vitest";
-import { getPackageVersion, getPrefix } from "@/utils";
+import { getPackageVersion, getPrefix } from "@/route";
 
 test("getPackageVersion() correctly returns version", () => {
   expect(getPackageVersion()).toBe(version);

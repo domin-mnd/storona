@@ -116,7 +116,7 @@ export function getStructure(
     .replace(/\/$/g, "");
 
   return {
-    endpoint: normalizedEndpoint,
+    endpoint: `/${normalizedEndpoint}`,
     method,
   };
 }
@@ -157,7 +157,7 @@ export const undefinedAdapter = createAdapter((i, _o) => ({
 
 export function defineOptions(router?: RouterOptions | string): RouterOptions {
   const options =
-    typeof router === "string" ? { directory: router } : router ?? {};
+    typeof router === "string" ? { directory: router } : (router ?? {});
 
   if (options.directory)
     options.directory = isAbsolute(options.directory)
