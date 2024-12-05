@@ -13,7 +13,8 @@
     }
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "publish:test": "npm publish --dry-run"
   },
   "repository": {
     "type": "git",
