@@ -24,7 +24,7 @@ $ bun i storona grammy @storona/grammy
 
 # Usage
 
-To use this adapter you need to create a bot instance and pass it to the adapter. Then you can use the router as intended by storona design:
+To use this adapter you need to create a bot instance and pass it to the router. Then you can use the router as intended by storona design:
 
 ```typescript
 import { Bot } from "grammy";

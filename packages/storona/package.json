@@ -28,7 +28,14 @@
     "test": "vitest run",
     "publish:test": "npm publish --dry-run"
   },
-  "keywords": ["express", "fastify", "backend", "router", "routing"],
+  "keywords": [
+    "express",
+    "fastify",
+    "grammy",
+    "backend",
+    "router",
+    "routing"
+  ],
   "author": "domin-mnd",
   "license": "MIT",
   "bugs": {

@@ -1,5 +1,5 @@
 {
-  "name": "@storona/grammy",
+  "name": "@storona/express",
   "version": "1.0.0",
   "description": "File-based router adapter for grammY",
   "main": "dist/index.js",
@@ -32,17 +32,18 @@
   "homepage": "https://storona.domin.lol/guide/adapters/grammy",
   "devDependencies": {
     "@domin-mnd/config": "^0.0.3",
+    "@types/node": "^20",
     "prettier": "^3.2.5",
     "tsup": "^8.3.5",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "grammy": "^1.32.0",
+    "express": ">=4",
     "storona": ">=1"
   },
   "peerDependenciesMeta": {
-    "grammy": {
+    "express": {
       "optional": true
     },
     "storona": {
