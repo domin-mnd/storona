@@ -40,13 +40,5 @@
   "peerDependencies": {
     "grammy": "^1.32.0",
     "storona": ">=1"
-  },
-  "peerDependenciesMeta": {
-    "grammy": {
-      "optional": true
-    },
-    "storona": {
-      "optional": true
-    }
   }
 }

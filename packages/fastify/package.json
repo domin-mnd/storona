@@ -41,13 +41,5 @@
   "peerDependencies": {
     "fastify": ">=4",
     "storona": ">=1"
-  },
-  "peerDependenciesMeta": {
-    "fastify": {
-      "optional": true
-    },
-    "storona": {
-      "optional": true
-    }
   }
 }
