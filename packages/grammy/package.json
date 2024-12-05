@@ -1,0 +1,43 @@
+{
+  "name": "@storona/grammy",
+  "version": "1.0.0",
+  "description": "File-based router adapter for grammY",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domin-mnd/storona-grammy.git"
+  },
+  "keywords": [],
+  "author": "domin-mnd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/domin-mnd/storona-grammy/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "homepage": "https://storona.domin.lol/guide/adapters/grammy",
+  "devDependencies": {
+    "@domin-mnd/config": "^0.0.3",
+    "prettier": "^3.2.5",
+    "tsup": "^8.3.5",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "grammy": "^1.32.0",
+    "storona": ">=1"
+  }
+}
