@@ -1,7 +1,4 @@
-import {
-  RuleConfigSeverity,
-  type UserConfig,
-} from "@commitlint/types";
+import { RuleConfigSeverity, type UserConfig } from "@commitlint/types";
 
 const config: UserConfig = {
   extends: ["@commitlint/config-conventional"],
@@ -9,21 +6,12 @@ const config: UserConfig = {
     "scope-enum": [
       RuleConfigSeverity.Error,
       "always",
-      ["express", "fastify"],
+      ["express", "fastify", "grammy"],
     ],
     "type-enum": [
       RuleConfigSeverity.Error,
       "always",
-      [
-        "chore",
-        "deps",
-        "docs",
-        "feat",
-        "fix",
-        "refactor",
-        "revert",
-        "test",
-      ],
+      ["chore", "deps", "docs", "feat", "fix", "refactor", "revert", "test"],
     ],
   },
 };

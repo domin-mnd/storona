@@ -1,6 +1,4 @@
-# Introduction
-
-## What is Storona?
+![Preview banner](public/preview-banner.png)
 
 JavaScript backend applications tend to rely on a framework or meta-framework to handle routing and architecture. But for specific use cases in which a full framework is not necessary, developers usually have to build their own routing system from scratch or using a full-fledged wrapper. This is usually a time-consuming process that can be avoided.
 
@@ -8,12 +6,9 @@ For this reason, Storona was created. It is designed to be easy to use and easy 
 
 Here's a quick example of how to use Storona:
 
-::: code-group
-
-```js:line-numbers [Express]
+```js
 const express = require("express");
 const { createRouter } = require("storona");
-const { adapter } = require("@storona/express");
 
 const app = express();
 
@@ -21,7 +16,6 @@ createRouter(app, {
   directory: "src/routes",
   // Set to true to use the package version. 1.0.0 -> /v1
   prefix: "/v1/api",
-  adapter: adapter(),
   quiet: false,
 });
 
@@ -29,33 +23,6 @@ app.listen(3000, async () => {
   console.info("API running on port 3000");
 });
 ```
-
-```js:line-numbers [Fastify]
-const fastify = require("fastify");
-const { createRouter } = require("storona");
-const { adapter } = require("@storona/fastify");
-
-const app = fastify();
-
-createRouter(app, {
-  directory: "src/routes",
-  // Set to true to use the package version. 1.0.0 -> /v1
-  prefix: "/v1/api",
-  adapter: adapter(),
-  quiet: false,
-});
-
-app.listen(
-  {
-    port: 3000
-  },
-  () => {
-    console.info("API running on port 3000");
-  }
-);
-```
-
-:::
 
 #### Result
 
@@ -79,18 +46,14 @@ The idea of route design was highly inspired by the [Nitro](https://nitro.unjs.i
 
 For the simplicity reason Storona supports TypeScript and JSX out-of-the-box. The transpilation of routes is handled by [tsup](https://tsup.egoist.dev/).
 
-::: info
-Use `compilerOptions.jsx` in your `tsconfig.json` to change the transpilation behavior of JSX/TSX.
-:::
+> Use `compilerOptions.jsx` in your `tsconfig.json` to change the transpilation behavior of JSX/TSX.
 
 ## Limitations
 
 Due to some [characters being forbidden in Windows file names](https://stackoverflow.com/a/31976060/14301934), Storona may not provide full set of features of the underlying framework's route registration.
 
-To avoid this problem, you can override the route by using the `route` exported variable in the route file. To know more about this, see the [Templates](/guide/routing/templates#overriding-route-and-method) guide.
+To avoid this problem, you can override the route by using the `route` exported variable in the route file. To know more about this, see the [Templates](https://storona.domin.lol/guide/routing/templates#overriding-route-and-method) guide.
 
-## What's Next?
+## Documentation
 
-- For a step-by-step guide on setting up Storona, check out the [Quick Start](/guide/quick-start) guide.
-- To know more about how routing design works, see the [Templates](/guide/routing/templates) guide.
-- For more information on configuring router, see [Reference](/reference/config) section.
+For more information regarding Storona, please refer to the [official documentation](https://storona.domin.lol).

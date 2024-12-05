@@ -10,5 +10,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "packages/storona/tests"]
+  "include": ["src", "tests"]
 }

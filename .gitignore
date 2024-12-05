@@ -10,3 +10,6 @@ biome.json
 
 # Vitepress
 docs/.vitepress/cache
+
+# Turbo
+.turbo

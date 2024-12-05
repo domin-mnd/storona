@@ -9,36 +9,39 @@ To install the package, run:
 ::: code-group
 
 ```sh [npm]
-$ npm install storona
+$ npm install storona @storona/[your-adapter]
 ```
 
 ```sh [yarn]
-$ yarn add storona
+$ yarn add storona @storona/[your-adapter]
 ```
 
 ```sh [pnpm]
-$ pnpm add storona
+$ pnpm add storona @storona/[your-adapter]
 ```
 
 ```sh [bun]
-$ bun add storona
+$ bun add storona @storona/[your-adapter]
 ```
 
 :::
 
 ## Initializing Router
 
-After that call the `createRouter` function with provided instance. It detects your framework automatically. Here's a quick example:
+After that call the `createRouter` function with provided instance. Here's a quick example:
 
 ::: code-group
 
 ```js:line-numbers [Express]
 const express = require("express");
 const { createRouter } = require("storona");
+const { adapter } = require("@storona/express");
 
 const app = express();
 
-createRouter(app);
+createRouter(app, {
+  adapter: adapter(),
+});
 
 app.listen(3000, () => {
   console.info("API running on port 3000");
@@ -48,10 +51,13 @@ app.listen(3000, () => {
 ```js:line-numbers [Fastify]
 const fastify = require("fastify");
 const { createRouter } = require("storona");
+const { adapter } = require("@storona/fastify");
 
 const app = fastify();
 
-createRouter(app);
+createRouter(app, {
+  adapter: adapter(),
+});
 
 app.listen(
   {

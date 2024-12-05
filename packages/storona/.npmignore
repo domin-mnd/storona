@@ -1,0 +1,20 @@
+# Dist only
+src
+tests
+
+# Configs
+.vscode
+.husky
+biome.json
+tsconfig.json
+korob.config.ts
+vitest.config.ts
+commitlint.config.ts
+.prettierrc.json
+.prettierignore
+
+# Markdown
+CONTRIBUTING.md
+
+# Dependencies
+bun.lockb

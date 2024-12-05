@@ -1,1 +1,1 @@
-bun run test:build
+bun run build

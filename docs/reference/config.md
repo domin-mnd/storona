@@ -102,33 +102,34 @@ This will suppress every non-critical issue that Storona encounters. It is not r
 
 ## Adapter
 
-To set a custom adapter or explicitly define it, set the `adapter` option:
+To set an adapter that will manipulate the provided instance, set the `adapter` option:
 
 ::: code-group
 
 ```ts [Express]
 import { createRouter } from "storona";
+import { adapter } from "@storona/express";
 
 createRouter(app, {
-  adapter: "express",
+  adapter: adapter(),
 });
 ```
 
 ```ts [Fastify]
 import { createRouter } from "storona";
+import { adapter } from "@storona/fastify";
 
 createRouter(app, {
-  adapter: "fastify",
+  adapter: adapter(),
 });
 ```
 
 ```ts [Custom Adapter]
 import { createRouter } from "storona";
-// An example of an adapter
-import { Adapter } from "@storona/grammy";
+import { adapter } from "@storona/grammy";
 
 createRouter(app, {
-  adapter: Adapter,
+  adapter: adapter(),
 });
 ```
 
