@@ -17,7 +17,7 @@ import {
   undefinedAdapter,
 } from "@/utils";
 import type { Adapter, RouteStructure } from "@/adapter";
-import { assertHandler } from "@/validate";
+import { assertHandler, assertOverrideArchitecturePath } from "@/validate";
 
 // Functions aren't pure to avoid repetitive code
 export let logger: Logger;
@@ -82,15 +82,15 @@ export let logger: Logger;
  */
 export async function createRouter<T>(
   app: T,
-  options?: RouterOptions,
+  options?: RouterOptions
 ): Promise<EndpointInfo[]>;
 export async function createRouter<T>(
   app: T,
-  directory?: string,
+  directory?: string
 ): Promise<EndpointInfo[]>;
 export async function createRouter<T>(
   app: T,
-  router?: RouterOptions | string,
+  router?: RouterOptions | string
 ): Promise<EndpointInfo[]> {
   const endpointStatus: EndpointInfo[] = [];
 
@@ -102,7 +102,7 @@ export async function createRouter<T>(
 
   if (options.directory.endsWith("/")) {
     logger.error(
-      "Routes directory should not end with a slash, skipping router registration",
+      "Routes directory should not end with a slash, skipping router registration"
     );
     return endpointStatus;
   }
@@ -114,7 +114,7 @@ export async function createRouter<T>(
   } catch (error) {
     if (error instanceof Error) {
       logger.error(
-        `Failed to instantiate adapter: ${(error as Error).message}`,
+        `Failed to instantiate adapter: ${(error as Error).message}`
       );
     } else {
       logger.error(`Unknown error while instantiating adapter: ${error}`);
@@ -132,6 +132,11 @@ export async function createRouter<T>(
     try {
       importData = flattenExports(await getImport(file));
       assertHandler(importData);
+      assertOverrideArchitecturePath(
+        options,
+        file,
+        importData as Record<string, unknown>
+      );
 
       structure = getStructure(options, file);
       structure = (await adapter.on.route?.(structure)) ?? structure;
@@ -166,11 +171,11 @@ export async function createRouter<T>(
     } catch (error) {
       if (error instanceof Error) {
         logger.error(
-          `Failed to register ${setEndpoint}: ${(error as Error).message}`,
+          `Failed to register ${setEndpoint}: ${(error as Error).message}`
         );
       } else {
         logger.error(
-          `Unknown error while registering ${setEndpoint}: ${error}`,
+          `Unknown error while registering ${setEndpoint}: ${error}`
         );
       }
       endpointStatus.push({
@@ -182,7 +187,7 @@ export async function createRouter<T>(
     }
 
     logger.info(
-      `Registered ${setMethod.toString().toUpperCase()} ${setEndpoint}`,
+      `Registered ${setMethod.toString().toUpperCase()} ${setEndpoint}`
     );
     endpointStatus.push({
       path: file,

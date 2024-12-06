@@ -9,7 +9,7 @@ There are 4 architecture rules to follow when working with Storona:
 - You can define only 1 handler in a single file.
 - The handler must be a default export of the file.
 - There must be used an appropriate function signature for the handler.
-- Files with overriden route must start with "!". For example, `apples/!someroute.get.ts`.
+- Files with overriden route or method must start with "!". For example, `apples/!someroute.get.ts`.
 
 ## Defining Handler
 

@@ -19,7 +19,7 @@ export function assertMethod(method: string): asserts method is M {
 }
 
 export function assertExportedVariables(
-  route: unknown,
+  route: unknown
 ): asserts route is CorrectImport<H, M, R> {
   if (typeof route !== "object" || route === null) {
     throw new Error("No exports found");
@@ -29,7 +29,7 @@ export function assertExportedVariables(
     const typeOfMethod = typeof route.method;
 
     if (typeOfMethod !== "string" || !METHODS.includes(route.method as M)) {
-      throw new Error("Invalid exported method type");
+      throw new Error(`Exported method must be one of: ${METHODS.join(", ")}`);
     }
   }
 
@@ -39,7 +39,7 @@ export function assertExportedVariables(
     if (typeOfRoute === "object" && route.route instanceof RegExp) return;
 
     if (typeOfRoute !== "string") {
-      throw new Error("Invalid exported route type");
+      throw new Error("Exported route must be either string or regex");
     }
   }
 }

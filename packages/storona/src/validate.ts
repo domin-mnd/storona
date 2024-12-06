@@ -2,7 +2,7 @@ import { logger } from "@/router";
 import type { RouterOptions } from "@/types";
 
 export function assertFileName(
-  fileName: string | undefined,
+  fileName: string | undefined
 ): asserts fileName is string {
   if (!fileName) {
     throw new Error("File name is not provided");
@@ -10,7 +10,7 @@ export function assertFileName(
 }
 
 export function assertMethod(
-  method: string | undefined,
+  method: string | undefined
 ): asserts method is string {
   if (!method) {
     throw new Error("Method is not provided");
@@ -20,15 +20,16 @@ export function assertMethod(
 export function assertOverrideArchitecturePath(
   options: Required<RouterOptions>,
   path: string,
-  pathOverriden: boolean,
+  importData: Record<string, unknown>
 ): void {
   const pathParts = path.replace(/\\/g, "/").split("/");
   const fileName = pathParts.pop();
+  const breaksRule = "route" in importData || "method" in importData;
 
-  if (!options.ignoreWarnings && pathOverriden && !fileName?.startsWith("!")) {
+  if (!options.ignoreWarnings && breaksRule && !fileName?.startsWith("!")) {
     logger.warn(
       'Files with overriden routes should start with "!", rename the file to',
-      `${pathParts.join("/")}/!${fileName}`,
+      `${pathParts.join("/")}/!${fileName}`
     );
   }
 }

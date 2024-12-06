@@ -11,16 +11,16 @@ import { logger } from "@/router";
  * normalizeManualRoute(undefined) == undefined
  */
 export function normalizeManualRoute(
-  route: string | RegExp | undefined,
+  route: string | RegExp | undefined
 ): string | RegExp | undefined {
   // RegExp or undefined do not have any normalization steps
   if (typeof route !== "string") return route;
 
   if (!route.startsWith("/")) {
     logger?.warn(
-      "Endpoint",
+      "Route",
       `"${route}"`,
-      "should start with a slash, automatically remapping",
+      "should start with a slash, automatically remapping"
     );
     return `/${route}`;
   }

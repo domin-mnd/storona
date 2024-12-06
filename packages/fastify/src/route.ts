@@ -11,7 +11,7 @@ let packageJson: Record<string, unknown> | null | undefined;
 export function getPackageJson(): Record<string, unknown> | null {
   try {
     return JSON.parse(
-      readFileSync(join(process.cwd(), "package.json"), "utf-8"),
+      readFileSync(join(process.cwd(), "package.json"), "utf-8")
     );
   } catch {
     return null;
@@ -50,9 +50,10 @@ export function getPrefix(prefix: `/${string}` | true): string {
  */
 export function prependPrefix(
   structure: RouteStructure,
-  prefix: string,
+  prefix: string
 ): RouteStructure {
   structure.endpoint = `${prefix}${structure.endpoint}`;
   structure.endpoint = structure.endpoint.replace(/\/$/g, "");
+  if (structure.endpoint === "") structure.endpoint = "/";
   return structure;
 }

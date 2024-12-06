@@ -46,7 +46,7 @@ let packageJson: Record<string, unknown> | null | undefined;
 export function getPackageJson(): Record<string, unknown> | null {
   try {
     return JSON.parse(
-      readFileSync(join(process.cwd(), "package.json"), "utf-8"),
+      readFileSync(join(process.cwd(), "package.json"), "utf-8")
     );
   } catch {
     return null;
@@ -75,13 +75,13 @@ export function getProjectFormat(): "cjs" | "esm" {
  * Get structure from file path.
  * @param path - Path to file.
  * @example
- * dist/routes/some/route.get.ts == endpoint: "/v1/some/route", method: "get"
- * dist/routes/some/very/nested/endpoint.post.js == endpoint: "/v1/some/very/nested/endpoint", method: "post"
- * dist/routes/index.put.jsx == endpoint: "/v1", method: "put"
+ * dist/routes/some/route.get.ts == endpoint: "/some/route", method: "get"
+ * dist/routes/some/very/nested/endpoint.post.js == endpoint: "/some/very/nested/endpoint", method: "post"
+ * dist/routes/index.put.jsx == endpoint: "/", method: "put"
  */
 export function getStructure(
   options: Required<RouterOptions>,
-  path: string,
+  path: string
 ): RouteStructure {
   path = path.replace(/\\/g, "/");
 
@@ -168,7 +168,7 @@ export function defineOptions(router?: RouterOptions | string): RouterOptions {
 }
 
 export function fallbackOptions(
-  options: RouterOptions,
+  options: RouterOptions
 ): Required<RouterOptions> {
   return {
     directory: "routes",
