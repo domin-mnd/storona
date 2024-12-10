@@ -19,8 +19,9 @@
     }
   },
   "repository": {
+    "url": "https://github.com/domin-mnd/storona.git",
     "type": "git",
-    "url": "git+https://github.com/domin-mnd/storona.git"
+    "directory": "packages/storona"
   },
   "scripts": {
     "dev": "tsup --watch",
