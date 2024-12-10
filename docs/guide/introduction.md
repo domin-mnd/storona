@@ -24,7 +24,7 @@ createRouter(app, {
   quiet: false,
 });
 
-app.listen(3000, async () => {
+app.listen(3000, () => {
   console.info("API running on port 3000");
 });
 ```
@@ -49,11 +49,10 @@ Storona is designed to be simple and easy to use. It is neither a complete frame
 
 The idea of route design was highly inspired by the [Nitro](https://nitro.unjs.io/guide/routing#filesystem-routing) framework that uses h3 under the hood. Storona on the other hand is compatible with different kind of frameworks like [Express](https://expressjs.com/), [Fastify](https://fastify.dev/) and [grammY](https://grammy.dev/).
 
-For the simplicity reason Storona supports TypeScript and JSX out-of-the-box. The transpilation of routes is handled by [tsup](https://tsup.egoist.dev/). For more information regarding the configuration, see the [Transpilation of TypeScript](/learning/transpilation-of-typescript) guide.
+For the simplicity reason Storona supports TypeScript and JSX out-of-the-box. The transpilation of routes is handled by [tsup](https://tsup.egoist.dev/).
 
-::: info
-Use `compilerOptions.jsx` in your `tsconfig.json` to change the transpilation behavior of JSX/TSX.
-:::
+> [!TIP]
+> For more information regarding the configuration, see the [Transpilation of TypeScript](/learning/transpilation-of-typescript) guide.
 
 ## Limitations
 

@@ -43,7 +43,7 @@ createRouter(app, {
   adapter: adapter(),
 });
 
-app.listen(3000, async () => {
+app.listen(3000, () => {
   console.info("API running on port 3000");
 });
 ```

@@ -18,18 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/domin-mnd/storona-grammy.git"
+    "url": "git+https://github.com/domin-mnd/storona.git"
   },
   "keywords": [],
   "author": "domin-mnd",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/domin-mnd/storona-grammy/issues"
+    "url": "https://github.com/domin-mnd/storona/issues"
   },
   "engines": {
     "node": ">=20"
   },
-  "homepage": "https://storona.domin.lol/guide/adapters/grammy",
+  "homepage": "https://storona.domin.lol/adapters/grammy",
   "devDependencies": {
     "@domin-mnd/config": "^0.0.3",
     "prettier": "^3.2.5",

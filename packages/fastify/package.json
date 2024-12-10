@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=20"
   },
-  "homepage": "https://storona.domin.lol/guide/adapters/fastify",
+  "homepage": "https://storona.domin.lol/adapters/fastify",
   "devDependencies": {
     "@domin-mnd/config": "^0.0.3",
     "@types/node": "^20",

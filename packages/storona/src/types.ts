@@ -3,28 +3,28 @@ import type { AdapterCallback } from "@/adapter";
 export interface RouterOptions {
   /**
    * Directory to look for routes.
-   * @see {@link https://storona.domin.lol/reference/config.html#directory}
+   * @see {@link https://storona.domin.lol/reference/config#directory}
    * @default "routes"
    */
   directory?: string;
 
   /**
    * Silence all logs.
-   * @see {@link https://storona.domin.lol/reference/config.html#quiet}
+   * @see {@link https://storona.domin.lol/reference/config#quiet}
    * @default false
    */
   quiet?: boolean;
 
   /**
    * Ignore (silence) all warnings.
-   * @see {@link https://storona.domin.lol/reference/config.html#ignore-warnings}
+   * @see {@link https://storona.domin.lol/reference/config#ignore-warnings}
    * @default false
    */
   ignoreWarnings?: boolean;
 
   /**
    * Custom provided adapter to fetch from.
-   * @see {@link https://storona.domin.lol/reference/config.html#adapter}
+   * @see {@link https://storona.domin.lol/reference/config#adapter}
    */
   adapter?: AdapterCallback<any, any, any, any>;
 }

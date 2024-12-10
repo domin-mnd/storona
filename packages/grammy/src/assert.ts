@@ -52,7 +52,7 @@ export function assertCommandScope(importData: ParsedImport<H, M, R>) {
 
   if (typeof scope !== "string") {
     throw new Error(
-      "Command scope must be a string, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope"
+      "Command scope must be a string, check following link to see the scope template: https://storona.domin.lol/adapters/grammy#scope-values"
     );
   }
 
@@ -78,7 +78,7 @@ export function assertCommandScope(importData: ParsedImport<H, M, R>) {
   }
 
   throw new Error(
-    "Invalid command scope, check following link to see the scope template: https://storona.domin.lol/guide/adapters/grammy#command-scope"
+    "Invalid command scope, check following link to see the scope template: https://storona.domin.lol/adapters/grammy#scope-values"
   );
 }
 

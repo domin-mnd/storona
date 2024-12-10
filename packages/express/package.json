@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=20"
   },
-  "homepage": "https://storona.domin.lol/guide/adapters/express",
+  "homepage": "https://storona.domin.lol/adapters/express",
   "devDependencies": {
     "@domin-mnd/config": "^0.0.3",
     "@types/node": "^20",
