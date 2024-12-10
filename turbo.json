@@ -2,10 +2,28 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "dev": {
-      "dependsOn": []
+      "dependsOn": [],
+      "cache": false
     },
     "build": {
       "dependsOn": ["^build"]
+    },
+    "@storona/express#build": {
+      "dependsOn": ["storona#build"]
+    },
+    "@storona/fastify#build": {
+      "dependsOn": ["storona#build"]
+    },
+    "@storona/grammy#build": {
+      "dependsOn": ["storona#build"]
+    },
+    "@storona/docs#build": {
+      "dependsOn": [
+        "@storona/express#build",
+        "@storona/fastify#build",
+        "@storona/grammy#build",
+        "storona#build"
+      ]
     },
     "test": {
       "outputs": []
