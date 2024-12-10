@@ -27,12 +27,12 @@ $ bun i storona fastify @storona/fastify
 To use this adapter you need to create an fastify instance and pass it to the router. Then you can use the router as intended by storona design:
 
 ```typescript
-import fastify from "fastify";
+import Fastify from "fastify";
 import { createRouter } from "storona";
 import { adapter } from "@storona/fastify";
 
 function createServer() {
-  const app = fastify();
+  const app = Fastify();
   return app;
 }
 
@@ -53,7 +53,7 @@ server.listen(
   },
   () => {
     console.info("API running on port 3000");
-  },
+  }
 );
 ```
 

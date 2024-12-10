@@ -30,6 +30,7 @@ export let logger: Logger;
  * @param app - Your framework instance. Supported frameworks: Express, Fastify.
  * @returns Status of each found endpoint.
  * @example
+ * ```ts
  * import express from "express";
  * import { createRouter } from "storona";
  * import { adapter } from "@storona/express";
@@ -53,13 +54,15 @@ export let logger: Logger;
  * server.listen(3000, () => {
  *   console.info("API running on port 3000");
  * });
+ * ```
  * @example
- * import fastify from "fastify";
+ * ```ts
+ * import Fastify from "fastify";
  * import { createRouter } from "storona";
  * import { adapter } from "@storona/fastify";
  *
  * function createServer() {
- *   const app = fastify();
+ *   const app = Fastify();
  *   return app;
  * }
  *
@@ -79,6 +82,7 @@ export let logger: Logger;
  *     console.info("API running on port 3000");
  *   }
  * );
+ * ```
  */
 export async function createRouter<T>(
   app: T,

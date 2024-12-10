@@ -58,3 +58,8 @@
   text-decoration-color: var(--vp-c-brand-1);
   transition: all 0.25s;
 }
+
+.custom-block.success {
+  background-color: rgba(63, 244, 83, 0.16);
+  color: var(--vp-c-text-1);
+}

@@ -11,7 +11,7 @@ import { registerRoute } from "@/register";
  *
  * @see {@link https://expressjs.com/ | Express Documentation}
  * @see {@link https://storona.domin.lol/ | Storona Documentation}
- * @see {@link https://storona.domin.lol/guide/adapters/express | @storona/express Documentation}
+ * @see {@link https://storona.domin.lol/adapters/express | @storona/express Documentation}
  */
 export const adapter = createAdapter<H, M, R, Express, Options>(
   (instance, opts = {}) => {
@@ -46,6 +46,7 @@ export const adapter = createAdapter<H, M, R, Express, Options>(
  * @param handler - Request handler.
  * @returns Request handler.
  * @example
+ * ```js
  * // routes/!hello.get.mjs
  * import { define } from "@storona/express";
  *
@@ -56,7 +57,9 @@ export const adapter = createAdapter<H, M, R, Express, Options>(
  * export default define((_req, res) => {
  *   res.send("Hello world!");
  * });
+ * ```
  * @example
+ * ```ts
  * // routes/my-fruit.post.ts
  * import { define } from "@storona/express";
  *
@@ -70,6 +73,7 @@ export const adapter = createAdapter<H, M, R, Express, Options>(
  *   const { fruit } = req.body;
  *   res.send(`My fruit is ${fruit}!`);
  * });
+ * ```
  */
 export function define<Route extends RouteGeneric = RouteGeneric>(
   handler: H<

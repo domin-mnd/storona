@@ -1,13 +1,21 @@
 import { defineConfig } from "vitepress";
+import { transformerTwoslash } from "@shikijs/vitepress-twoslash";
+import { createFileSystemTypesCache } from "@shikijs/vitepress-twoslash/cache-fs";
 
 export default defineConfig({
   title: "Storona",
   description: "Simple opinionated file-based router",
+
   themeConfig: {
     logo: {
       light: "/storona-light.svg",
       dark: "/storona-dark.svg",
     },
+
+    outline: {
+      level: "deep",
+    },
+
     nav: [
       {
         text: "Guide",
@@ -24,31 +32,46 @@ export default defineConfig({
       },
     ],
 
-    sidebar: {
-      "/guide/": [
-        {
-          text: "Getting Started",
-          items: [
-            { text: "Introduction", link: "/guide/introduction" },
-            { text: "Quick Start", link: "/guide/quick-start" },
-          ],
-        },
-        {
-          text: "Routing",
-          items: [
-            { text: "Templates", link: "/guide/routing/templates" },
-            { text: "Wildcards", link: "/guide/routing/wildcards" },
-            { text: "Methods", link: "/guide/routing/methods" },
-          ],
-        },
-      ],
-      "/reference/": [
-        {
-          text: "Reference",
-          items: [{ text: "Config", link: "/reference/config" }],
-        },
-      ],
-    },
+    sidebar: [
+      {
+        text: "Getting Started",
+        items: [
+          { text: "Introduction", link: "/guide/introduction" },
+          { text: "Quick Start", link: "/guide/quick-start" },
+          { text: "Migrate from v0", link: "/guide/migrate-from-v0" },
+          { text: "Config", link: "/reference/config" },
+        ],
+      },
+      {
+        text: "Learning",
+        items: [
+          {
+            text: "Rules Of Architecture",
+            link: "/learning/rules-of-architecture",
+          },
+          {
+            text: "Export Overrides",
+            link: "/learning/export-overrides",
+          },
+          {
+            text: "Transpilation Of TypeScript",
+            link: "/learning/transpilation-of-typescript",
+          },
+        ],
+      },
+      {
+        text: "Adapters",
+        items: [
+          {
+            text: "Custom Adapter",
+            link: "/adapters/custom-adapter",
+          },
+          { text: "Express", link: "/adapters/express" },
+          { text: "Fastify", link: "/adapters/fastify" },
+          { text: "grammY", link: "/adapters/grammy" },
+        ],
+      },
+    ],
 
     socialLinks: [
       {
@@ -68,10 +91,12 @@ export default defineConfig({
         detailedView: true,
       },
     },
+
     editLink: {
       pattern: "https://github.com/domin-mnd/storona/edit/master/docs/:path",
     },
   },
+
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
     ["meta", { property: "og:image", content: "/preview-banner.png" }],
@@ -98,5 +123,16 @@ export default defineConfig({
       },
     ],
   ],
+
+  markdown: {
+    codeTransformers: [
+      transformerTwoslash({
+        typesCache: createFileSystemTypesCache({
+          dir: ".vitepress/cache/twoslash",
+        }),
+      }),
+    ],
+  },
+
   lastUpdated: true,
 });

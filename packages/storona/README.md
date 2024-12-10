@@ -9,11 +9,13 @@ Here's a quick example of how to use Storona:
 ```js
 const express = require("express");
 const { createRouter } = require("storona");
+const { adapter } = require("@storona/express");
 
 const app = express();
 
 createRouter(app, {
   directory: "src/routes",
+  adapter: adapter(),
   quiet: false,
 });
 

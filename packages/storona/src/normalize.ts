@@ -5,10 +5,12 @@ import { logger } from "@/router";
  * @param route - Route to normalize.
  * @returns Normalized route used to register the endpoint.
  * @example
+ * ```js
  * normalizeManualRoute("/some/route") == "/some/route"
  * normalizeManualRoute("some/route") == "/some/route"
  * normalizeManualRoute(/someregex/) == /someregex/
  * normalizeManualRoute(undefined) == undefined
+ * ```
  */
 export function normalizeManualRoute(
   route: string | RegExp | undefined

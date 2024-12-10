@@ -22,8 +22,10 @@ export function getPackageJson(): Record<string, unknown> | null {
  * Get package version from package.json.
  * @returns Package version.
  * @example
+ * ```js
  * getPackageVersion() == "1.6.7" // If package.json has version 1.6.7
  * getPackageVersion() == "1.0.0" // If there is no version in package.json or package.json is not found
+ * ```
  */
 export function getPackageVersion(): string {
   if (packageJson === undefined) {

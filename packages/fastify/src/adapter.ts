@@ -11,7 +11,7 @@ import type { FastifyInstance, RouteGenericInterface } from "fastify";
  *
  * @see {@link https://fastify.dev/ | Fastify Documentation}
  * @see {@link https://storona.domin.lol/ | Storona Documentation}
- * @see {@link https://storona.domin.lol/guide/adapters/fastify | @storona/fastify Documentation}
+ * @see {@link https://storona.domin.lol/adapters/fastify | @storona/fastify Documentation}
  */
 export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
   (instance, opts = {}) => {
@@ -37,7 +37,7 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
         },
       },
     };
-  },
+  }
 );
 
 /**
@@ -46,6 +46,7 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
  * @param handler - Route handler method.
  * @returns Route handler method.
  * @example
+ * ```js
  * // routes/!hello.get.mjs
  * import { define } from "@storona/fastify";
  *
@@ -56,7 +57,9 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
  * export default define((_request, reply) => {
  *   reply.send("Hello world!");
  * });
+ * ```
  * @example
+ * ```ts
  * // routes/my-fruit.post.ts
  * import { define } from "@storona/fastify";
  *
@@ -70,9 +73,10 @@ export const adapter = createAdapter<H, M, R, FastifyInstance, Options>(
  *   const { fruit } = request.body;
  *   reply.send(`My fruit is ${fruit}!`);
  * });
+ * ```
  */
 export function define<RouteGeneric extends RouteGenericInterface>(
-  handler: H<RouteGeneric>,
+  handler: H<RouteGeneric>
 ): H<RouteGeneric> {
   return handler;
 }

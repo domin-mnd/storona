@@ -21,7 +21,9 @@ export function isBun(): boolean {
  * @param dir - Path to directory.
  * @returns File path.
  * @example
+ * ```js
  * getFiles("routes") == ["routes/some/route.get.js", "routes/some/very/nested/endpoint.post.js"]
+ * ```
  */
 export function* getFiles(dir: string): Generator<string> {
   const files = readdirSync(dir, { withFileTypes: true });

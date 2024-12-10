@@ -12,7 +12,20 @@ createRouter(app, {
 });
 ```
 
-## Directory
+## Adapter <Badge type="info" text="Since v1" />
+
+To set an adapter that will manipulate the provided instance, set the `adapter` option:
+
+```ts
+import { createRouter } from "storona";
+import { adapter } from "@storona/[your-adapter]";
+
+createRouter(app, {
+  adapter: adapter(),
+});
+```
+
+## Directory <Badge type="info" text="Since v0" />
 
 By default, Storona will look for routes in the `routes` directory. You can change this by setting the `directory` option:
 
@@ -24,24 +37,7 @@ createRouter(app, {
 });
 ```
 
-## Prefix
-
-You can add a dynamic prefix to all routes by setting the `prefix` option:
-
-```ts
-import { createRouter } from "storona";
-
-createRouter(app, {
-  // prefix: false, // Default
-  prefix: "/v2",
-});
-```
-
-::: tip
-Setting the `prefix` option to `true` will use the package.json's major version as a prefix. I.e. if the package.json version is `1.2.3`, the prefix will be `/v1`. This is a convenient way to version your API.
-:::
-
-## Quiet
+## Quiet <Badge type="info" text="Since v0" />
 
 To suppress logger completely, set the `quiet` option to `true`:
 
@@ -86,7 +82,7 @@ console.log(routes);
 */
 ```
 
-## Ignore Warnings
+## Ignore Warnings <Badge type="info" text="Since v0" />
 
 To suppress warnings that are logged by Storona, set the `ignoreWarnings` option to `true`:
 
@@ -99,38 +95,3 @@ createRouter(app, {
 ```
 
 This will suppress every non-critical issue that Storona encounters. It is not recommended to use in production.
-
-## Adapter
-
-To set an adapter that will manipulate the provided instance, set the `adapter` option:
-
-::: code-group
-
-```ts [Express]
-import { createRouter } from "storona";
-import { adapter } from "@storona/express";
-
-createRouter(app, {
-  adapter: adapter(),
-});
-```
-
-```ts [Fastify]
-import { createRouter } from "storona";
-import { adapter } from "@storona/fastify";
-
-createRouter(app, {
-  adapter: adapter(),
-});
-```
-
-```ts [Custom Adapter]
-import { createRouter } from "storona";
-import { adapter } from "@storona/grammy";
-
-createRouter(app, {
-  adapter: adapter(),
-});
-```
-
-:::

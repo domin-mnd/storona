@@ -18,7 +18,7 @@ import { registerCommand } from "@/register";
  *
  * @see {@link https://grammy.dev/ | Grammy Documentation}
  * @see {@link https://storona.domin.lol/ | Storona Documentation}
- * @see {@link https://storona.domin.lol/guide/adapters/grammy | @storona/grammy Documentation}
+ * @see {@link https://storona.domin.lol/adapters/grammy | @storona/grammy Documentation}
  */
 export const adapter = createAdapter<H, M, R, Bot, Options>(
   (bot, opts = {}) => {
@@ -52,7 +52,7 @@ export const adapter = createAdapter<H, M, R, Bot, Options>(
         },
       },
     };
-  },
+  }
 );
 
 /**
@@ -61,7 +61,8 @@ export const adapter = createAdapter<H, M, R, Bot, Options>(
  * @param handler - Route handler method.
  * @returns Route handler method.
  * @example
- * // routes/!hello.hears.mjs
+ * ```ts
+ * // routes/!hello.hears.ts
  * import { define } from "@storona/grammy";
  *
  * // Optional overrides
@@ -72,24 +73,41 @@ export const adapter = createAdapter<H, M, R, Bot, Options>(
  * export default define<"hears">((ctx) => {
  *   ctx.reply("Hello world!");
  * });
+ * ```
  * @example
- * // routes/start.command.ts
+ * ```js
+ * // routes/start.command.mjs
  * import { define } from "@storona/grammy";
  *
  * export default define((ctx) => {
  *   // ctx defaults to Context type if no explicit type provided.
  *   ctx.reply("Hello world!");
  * });
+ * ```
  * @example
+ * ```js
+ * // routes/start.command.js
+ * const { define } = require("@storona/grammy");
+ *
+ * module.exports = {
+ *   default: define((ctx) => {
+ *     // ctx defaults to Context type if no explicit type provided.
+ *     ctx.reply("Hello world!");
+ *   }),
+ * }
+ * ```
+ * @example
+ * ```ts
  * // routes/!start.message.ts
  * import { define } from "@storona/grammy";
  *
  * // Override to multiple methods per route
- * export const method = ["message:entities:url", "edited_message"];
+ * export const method = ["channel_post", ":forward_origin"];
  *
- * export default define<"message:entities:url" | "edited_message">((ctx) => {
+ * export default define<"channel_post" | ":forward_origin">((ctx) => {
  *   ctx.reply("Hello world!");
  * });
+ * ```
  */
 export function define<Q extends MethodType = void>(cb: H<Q>): H<Q> {
   return cb;
