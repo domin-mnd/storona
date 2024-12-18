@@ -13,7 +13,8 @@
     "test": "turbo run test publish:test",
     "lint": "prettier --check .",
     "format": "prettier --write .",
-    "release": "bun run scripts/version.ts",
+    "version:switch": "bun run scripts/version/switch.ts",
+    "version:commit": "bun run scripts/version/commit.ts",
     "typecheck": "tsc --noEmit",
     "prepare": "husky"
   },
