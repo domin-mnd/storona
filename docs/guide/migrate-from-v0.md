@@ -76,11 +76,11 @@ import { define } from "@storona/fastify"; // [!code ++]
 export const route = "/hello";
 export const method = "get";
 
-export default defineFastifyRoute((_req, res) => { // [!code --]
-  res.send("Hello, World!"); // [!code --]
+export default defineFastifyRoute((_request, reply) => { // [!code --]
+  reply.send("Hello, World!"); // [!code --]
 }); // [!code --]
-export default define((_req, res) => { // [!code ++]
-  res.send("Hello, World!"); // [!code ++]
+export default define((_request, reply) => { // [!code ++]
+  reply.send("Hello, World!"); // [!code ++]
 }); // [!code ++]
 ```
 
