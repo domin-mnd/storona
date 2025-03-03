@@ -134,10 +134,15 @@ export async function buildRouter(options: Required<RouterOptions>) {
   const isEsm = format === "esm";
   const esmPrefix = isEsm ? "m" : "";
 
+  const entryDir = join(process.cwd(), options.directory).replace(/\\/g, "/");
+
   await build({
-    entry: [join(process.cwd(), options.directory).replace(/\\/g, "/")],
+    entry: [entryDir],
     outDir: join(BUILD_DIR, options.directory),
     splitting: true,
+    esbuildOptions: (esOptions) => {
+      esOptions.outbase = entryDir;
+    },
     format,
     silent: true,
     bundle: true,
