@@ -17,7 +17,7 @@
     "publish:test": "npm publish --dry-run"
   },
   "repository": {
-    "url": "https://github.com/domin-mnd/storona.git",
+    "url": "git+https://github.com/domin-mnd/storona.git",
     "type": "git",
     "directory": "packages/grammy"
   },
