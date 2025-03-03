@@ -46,7 +46,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "tsup": "8.3.5"
+    "tsup": "8.4.0"
   },
   "devDependencies": {
     "@domin-mnd/config": "0.0.3",
@@ -55,6 +55,6 @@
     "terser": "5.37.0",
     "tsup": "8.3.5",
     "typescript": "5.4.4",
-    "vitest": "2.0.5"
+    "vitest": "3.0.7"
   }
 }

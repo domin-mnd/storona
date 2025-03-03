@@ -39,7 +39,7 @@
     "tsup": "^8.3.5",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
-    "vitest": "2.0.5"
+    "vitest": "3.0.7"
   },
   "peerDependencies": {
     "@types/express": ">=4",
