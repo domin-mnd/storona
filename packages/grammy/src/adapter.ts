@@ -3,7 +3,6 @@ import {
   assertCommandDescription,
   assertCommandScope,
   assertExportedVariables,
-  assertLanguageCode,
   assertMethod,
 } from "@/assert";
 import type { Bot } from "grammy";
@@ -39,7 +38,6 @@ export const adapter = createAdapter<H, M, R, Bot, Options>(
         },
         register(importData) {
           if (opts.setMyCommands) {
-            assertLanguageCode(importData);
             assertCommandScope(importData);
             assertCommandDescription(importData);
           }

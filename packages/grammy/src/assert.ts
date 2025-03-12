@@ -36,15 +36,6 @@ export const EVENTS: Events[] = [
 // Allowed methods for Telegram bot updates
 export const METHODS: M[] = [...CALLBACKS, ...EVENTS];
 
-export function assertLanguageCode(importData: ParsedImport<H, M, R>) {
-  if (importData.method !== "command" || !("language" in importData.data))
-    return;
-
-  if (typeof importData.data.scope === "string") return;
-
-  throw new Error("Language code must be string");
-}
-
 export function assertCommandScope(importData: ParsedImport<H, M, R>) {
   if (importData.method !== "command" || !("scope" in importData.data)) return;
 

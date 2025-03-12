@@ -197,9 +197,6 @@ import { define } from "@storona/grammy";
 export const description = "Greets the user";
 export const scope = "all_private_chats";
 
-// Alternative to language_code key in the command object
-export const language = "en";
-
 export default define((ctx) => {
   ctx.reply("Hello!");
 });
@@ -208,8 +205,6 @@ export default define((ctx) => {
 :::
 
 This way you can set the command description and scope, which will be used when registering the command via `setMyCommands`.
-
-Setting the `language` variable will override the `language_code` key in the command object. Additionally you can use subdirectory after the language code in your file structure e.g. `src/routes/en/hello.command.ts`.
 
 #### Scope Values
 

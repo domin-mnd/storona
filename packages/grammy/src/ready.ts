@@ -1,5 +1,5 @@
 import type { Bot } from "grammy";
-import type { BotCommand, BotCommandScope, LanguageCode } from "grammy/types";
+import type { BotCommand, BotCommandScope } from "grammy/types";
 import type { EndpointInfo } from "storona/adapter";
 
 export const CHAT_SCOPE_REGEX = /^chat:(@[^:]+|\d+)$/g;
@@ -46,30 +46,22 @@ function parseScope(scope: string): BotCommandScope {
 }
 
 /**
- * Get scope and language code from data.
+ * Get scope from data.
  * @param data - Data object.
- * @returns Scope and language code.
+ * @returns Scope code.
  */
-function getScopeAndLanguage(data: Record<string, unknown>): {
-  scope?: BotCommandScope;
-  language_code?: LanguageCode;
-} {
+function getScope(data: Record<string, unknown>): BotCommandScope | undefined {
   const scope = data.scope as string | undefined;
-  const language = data.language as string | undefined;
-  return {
-    scope: scope ? parseScope(scope) : undefined,
-    language_code: language as LanguageCode,
-  };
+  return scope ? parseScope(scope) : undefined;
 }
 
 interface Group {
   commands: BotCommand[];
   scope?: BotCommandScope;
-  language_code?: LanguageCode;
 }
 
 /**
- * Group commands by their scope and language code
+ * Group commands by their scope
  * @param status - Endpoint status
  * @returns Grouped commands
  */
@@ -79,16 +71,14 @@ function groupCommands(status: EndpointInfo[]): Group[] {
   for (const route of status) {
     if (!route.registered || route.method !== "command") continue;
 
-    const { scope, language_code } = getScopeAndLanguage(route.data);
+    const scope = getScope(route.data);
 
     const command = {
       command: route.endpoint as string,
       description: route.data.description as string,
     };
 
-    const group = commands.find(
-      (group) => group.scope === scope && group.language_code === language_code,
-    );
+    const group = commands.find((group) => group.scope === scope);
 
     if (group) {
       group.commands.push(command);
@@ -96,7 +86,6 @@ function groupCommands(status: EndpointInfo[]): Group[] {
       commands.push({
         commands: [command],
         scope: scope,
-        language_code: language_code,
       });
     }
   }
@@ -108,7 +97,6 @@ export async function setMyCommands(bot: Bot, status: EndpointInfo[]) {
   for (const group of groupCommands(status)) {
     await bot.api.setMyCommands(group.commands, {
       scope: group.scope,
-      language_code: group.language_code,
     });
   }
 }
