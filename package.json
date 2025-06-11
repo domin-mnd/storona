@@ -1,6 +1,6 @@
 {
   "name": "storona",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Simple opinionated file-based routing for your JavaScript applications",
   "homepage": "https://storona.domin.lol",
   "repository": {

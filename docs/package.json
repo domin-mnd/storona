@@ -1,6 +1,6 @@
 {
   "name": "@storona/docs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Documentation for storona",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
