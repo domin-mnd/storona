@@ -15,11 +15,12 @@ export function registerCommand(bot: Bot, importData: ParsedImport<H, M, R>) {
     CALLBACKS.includes(importData.method as Callbacks)
   ) {
     const method = importData.method as Callbacks;
-    const route = importData.route.toString().substring(1);
-    bot[method](
-      method === "command" ? route.toString() : (route as string),
-      importData.handler
-    );
+    const route =
+      typeof importData.route === "string"
+        ? importData.route.toString().substring(1)
+        : importData.route;
+
+    bot[method](route as string, importData.handler);
   } else {
     bot.on(importData.method as Events, importData.handler);
   }
